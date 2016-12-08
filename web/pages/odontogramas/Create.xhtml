@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateOdontogramasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateOdontogramasLabel_idOdontograma}" for="idOdontograma" />
+                    <h:inputText id="idOdontograma" value="#{odontogramasController.selected.idOdontograma}" title="#{bundle.CreateOdontogramasTitle_idOdontograma}" required="true" requiredMessage="#{bundle.CreateOdontogramasRequiredMessage_idOdontograma}"/>
+                    <h:outputLabel value="#{bundle.CreateOdontogramasLabel_fechaCreacion}" for="fechaCreacion" />
+                    <h:inputText id="fechaCreacion" value="#{odontogramasController.selected.fechaCreacion}" title="#{bundle.CreateOdontogramasTitle_fechaCreacion}" required="true" requiredMessage="#{bundle.CreateOdontogramasRequiredMessage_fechaCreacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateOdontogramasLabel_fechaCierre}" for="fechaCierre" />
+                    <h:inputText id="fechaCierre" value="#{odontogramasController.selected.fechaCierre}" title="#{bundle.CreateOdontogramasTitle_fechaCierre}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateOdontogramasLabel_observaciones}" for="observaciones" />
+                    <h:inputTextarea rows="4" cols="30" id="observaciones" value="#{odontogramasController.selected.observaciones}" title="#{bundle.CreateOdontogramasTitle_observaciones}" />
+                    <h:outputLabel value="#{bundle.CreateOdontogramasLabel_idUsuarios}" for="idUsuarios" />
+                    <h:selectOneMenu id="idUsuarios" value="#{odontogramasController.selected.idUsuarios}" title="#{bundle.CreateOdontogramasTitle_idUsuarios}" required="true" requiredMessage="#{bundle.CreateOdontogramasRequiredMessage_idUsuarios}">
+                        <f:selectItems value="#{historiasclinicasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{odontogramasController.create}" value="#{bundle.CreateOdontogramasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{odontogramasController.prepareList}" value="#{bundle.CreateOdontogramasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateOdontogramasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPiezadentalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPiezadentalEmpty}" rendered="#{piezadentalController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{piezadentalController.items.rowCount > 0}">
+                    <h:outputText value="#{piezadentalController.pagination.pageFirstItem + 1}..#{piezadentalController.pagination.pageLastItem + 1}/#{piezadentalController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{piezadentalController.previous}" value="#{bundle.Previous} #{piezadentalController.pagination.pageSize}" rendered="#{piezadentalController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{piezadentalController.next}" value="#{bundle.Next} #{piezadentalController.pagination.pageSize}" rendered="#{piezadentalController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{piezadentalController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPiezadentalTitle_idDiente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDiente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPiezadentalTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPiezadentalTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{piezadentalController.prepareView}" value="#{bundle.ListPiezadentalViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{piezadentalController.prepareEdit}" value="#{bundle.ListPiezadentalEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{piezadentalController.destroy}" value="#{bundle.ListPiezadentalDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{piezadentalController.prepareCreate}" value="#{bundle.ListPiezadentalCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPiezadentalIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

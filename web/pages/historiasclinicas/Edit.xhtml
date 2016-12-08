@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditHistoriasclinicasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditHistoriasclinicasLabel_idUsuarios}" for="idUsuarios" />
+                    <h:inputText id="idUsuarios" value="#{historiasclinicasController.selected.idUsuarios}" title="#{bundle.EditHistoriasclinicasTitle_idUsuarios}" required="true" requiredMessage="#{bundle.EditHistoriasclinicasRequiredMessage_idUsuarios}"/>
+                    <h:outputLabel value="#{bundle.EditHistoriasclinicasLabel_fechaApertura}" for="fechaApertura" />
+                    <h:inputText id="fechaApertura" value="#{historiasclinicasController.selected.fechaApertura}" title="#{bundle.EditHistoriasclinicasTitle_fechaApertura}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditHistoriasclinicasLabel_motivoConsulta}" for="motivoConsulta" />
+                    <h:inputText id="motivoConsulta" value="#{historiasclinicasController.selected.motivoConsulta}" title="#{bundle.EditHistoriasclinicasTitle_motivoConsulta}" />
+                    <h:outputLabel value="#{bundle.EditHistoriasclinicasLabel_pacientes}" for="pacientes" />
+                    <h:selectOneMenu id="pacientes" value="#{historiasclinicasController.selected.pacientes}" title="#{bundle.EditHistoriasclinicasTitle_pacientes}" required="true" requiredMessage="#{bundle.EditHistoriasclinicasRequiredMessage_pacientes}">
+                        <f:selectItems value="#{pacientesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{historiasclinicasController.update}" value="#{bundle.EditHistoriasclinicasSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditHistoriasclinicasViewLink}"/>
+                <br />
+                <h:commandLink action="#{historiasclinicasController.prepareList}" value="#{bundle.EditHistoriasclinicasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditHistoriasclinicasIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

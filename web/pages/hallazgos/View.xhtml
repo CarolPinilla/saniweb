@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewHallazgosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewHallazgosLabel_idHallazgo}"/>
+                    <h:outputText value="#{hallazgosController.selected.idHallazgo}" title="#{bundle.ViewHallazgosTitle_idHallazgo}"/>
+                    <h:outputText value="#{bundle.ViewHallazgosLabel_fechaRegistro}"/>
+                    <h:outputText value="#{hallazgosController.selected.fechaRegistro}" title="#{bundle.ViewHallazgosTitle_fechaRegistro}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewHallazgosLabel_mesial}"/>
+                    <h:outputText value="#{hallazgosController.selected.mesial}" title="#{bundle.ViewHallazgosTitle_mesial}"/>
+                    <h:outputText value="#{bundle.ViewHallazgosLabel_oclusal}"/>
+                    <h:outputText value="#{hallazgosController.selected.oclusal}" title="#{bundle.ViewHallazgosTitle_oclusal}"/>
+                    <h:outputText value="#{bundle.ViewHallazgosLabel_lingual}"/>
+                    <h:outputText value="#{hallazgosController.selected.lingual}" title="#{bundle.ViewHallazgosTitle_lingual}"/>
+                    <h:outputText value="#{bundle.ViewHallazgosLabel_distal}"/>
+                    <h:outputText value="#{hallazgosController.selected.distal}" title="#{bundle.ViewHallazgosTitle_distal}"/>
+                    <h:outputText value="#{bundle.ViewHallazgosLabel_incisal}"/>
+                    <h:outputText value="#{hallazgosController.selected.incisal}" title="#{bundle.ViewHallazgosTitle_incisal}"/>
+                    <h:outputText value="#{bundle.ViewHallazgosLabel_vestibular}"/>
+                    <h:outputText value="#{hallazgosController.selected.vestibular}" title="#{bundle.ViewHallazgosTitle_vestibular}"/>
+                    <h:outputText value="#{bundle.ViewHallazgosLabel_apical}"/>
+                    <h:outputText value="#{hallazgosController.selected.apical}" title="#{bundle.ViewHallazgosTitle_apical}"/>
+                    <h:outputText value="#{bundle.ViewHallazgosLabel_hallazgoscol}"/>
+                    <h:outputText value="#{hallazgosController.selected.hallazgoscol}" title="#{bundle.ViewHallazgosTitle_hallazgoscol}"/>
+                    <h:outputText value="#{bundle.ViewHallazgosLabel_odontogramasidOdontograma}"/>
+                    <h:outputText value="#{hallazgosController.selected.odontogramasidOdontograma}" title="#{bundle.ViewHallazgosTitle_odontogramasidOdontograma}"/>
+                    <h:outputText value="#{bundle.ViewHallazgosLabel_piezaDentalidDiente}"/>
+                    <h:outputText value="#{hallazgosController.selected.piezaDentalidDiente}" title="#{bundle.ViewHallazgosTitle_piezaDentalidDiente}"/>
+                    <h:outputText value="#{bundle.ViewHallazgosLabel_tratamientoidTratamiento}"/>
+                    <h:outputText value="#{hallazgosController.selected.tratamientoidTratamiento}" title="#{bundle.ViewHallazgosTitle_tratamientoidTratamiento}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{hallazgosController.destroyAndView}" value="#{bundle.ViewHallazgosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewHallazgosEditLink}"/>
+                <br />
+                <h:commandLink action="#{hallazgosController.prepareCreate}" value="#{bundle.ViewHallazgosCreateLink}" />
+                <br />
+                <h:commandLink action="#{hallazgosController.prepareList}" value="#{bundle.ViewHallazgosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewHallazgosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

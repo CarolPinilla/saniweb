@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPersonalodontologicoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPersonalodontologicoLabel_idUsuarios}"/>
+                    <h:outputText value="#{personalodontologicoController.selected.idUsuarios}" title="#{bundle.ViewPersonalodontologicoTitle_idUsuarios}"/>
+                    <h:outputText value="#{bundle.ViewPersonalodontologicoLabel_especialidad}"/>
+                    <h:outputText value="#{personalodontologicoController.selected.especialidad}" title="#{bundle.ViewPersonalodontologicoTitle_especialidad}"/>
+                    <h:outputText value="#{bundle.ViewPersonalodontologicoLabel_tarjetaProfesional}"/>
+                    <h:outputText value="#{personalodontologicoController.selected.tarjetaProfesional}" title="#{bundle.ViewPersonalodontologicoTitle_tarjetaProfesional}"/>
+                    <h:outputText value="#{bundle.ViewPersonalodontologicoLabel_usuarios}"/>
+                    <h:outputText value="#{personalodontologicoController.selected.usuarios}" title="#{bundle.ViewPersonalodontologicoTitle_usuarios}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{personalodontologicoController.destroyAndView}" value="#{bundle.ViewPersonalodontologicoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPersonalodontologicoEditLink}"/>
+                <br />
+                <h:commandLink action="#{personalodontologicoController.prepareCreate}" value="#{bundle.ViewPersonalodontologicoCreateLink}" />
+                <br />
+                <h:commandLink action="#{personalodontologicoController.prepareList}" value="#{bundle.ViewPersonalodontologicoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPersonalodontologicoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

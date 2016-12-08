@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEstadocitasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEstadocitasEmpty}" rendered="#{estadocitasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{estadocitasController.items.rowCount > 0}">
+                    <h:outputText value="#{estadocitasController.pagination.pageFirstItem + 1}..#{estadocitasController.pagination.pageLastItem + 1}/#{estadocitasController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{estadocitasController.previous}" value="#{bundle.Previous} #{estadocitasController.pagination.pageSize}" rendered="#{estadocitasController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{estadocitasController.next}" value="#{bundle.Next} #{estadocitasController.pagination.pageSize}" rendered="#{estadocitasController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{estadocitasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstadocitasTitle_idEstado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEstado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstadocitasTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstadocitasTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{estadocitasController.prepareView}" value="#{bundle.ListEstadocitasViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{estadocitasController.prepareEdit}" value="#{bundle.ListEstadocitasEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{estadocitasController.destroy}" value="#{bundle.ListEstadocitasDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{estadocitasController.prepareCreate}" value="#{bundle.ListEstadocitasCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListEstadocitasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

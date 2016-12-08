@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListOdontogramasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListOdontogramasEmpty}" rendered="#{odontogramasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{odontogramasController.items.rowCount > 0}">
+                    <h:outputText value="#{odontogramasController.pagination.pageFirstItem + 1}..#{odontogramasController.pagination.pageLastItem + 1}/#{odontogramasController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{odontogramasController.previous}" value="#{bundle.Previous} #{odontogramasController.pagination.pageSize}" rendered="#{odontogramasController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{odontogramasController.next}" value="#{bundle.Next} #{odontogramasController.pagination.pageSize}" rendered="#{odontogramasController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{odontogramasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOdontogramasTitle_idOdontograma}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idOdontograma}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOdontogramasTitle_fechaCreacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaCreacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOdontogramasTitle_fechaCierre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaCierre}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOdontogramasTitle_observaciones}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observaciones}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOdontogramasTitle_idUsuarios}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUsuarios}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{odontogramasController.prepareView}" value="#{bundle.ListOdontogramasViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{odontogramasController.prepareEdit}" value="#{bundle.ListOdontogramasEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{odontogramasController.destroy}" value="#{bundle.ListOdontogramasDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{odontogramasController.prepareCreate}" value="#{bundle.ListOdontogramasCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListOdontogramasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

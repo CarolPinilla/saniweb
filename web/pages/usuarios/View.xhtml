@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUsuariosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_idUsuarios}"/>
+                    <h:outputText value="#{usuariosController.selected.idUsuarios}" title="#{bundle.ViewUsuariosTitle_idUsuarios}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_tipoDocumento}"/>
+                    <h:outputText value="#{usuariosController.selected.tipoDocumento}" title="#{bundle.ViewUsuariosTitle_tipoDocumento}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_documento}"/>
+                    <h:outputText value="#{usuariosController.selected.documento}" title="#{bundle.ViewUsuariosTitle_documento}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_nombres}"/>
+                    <h:outputText value="#{usuariosController.selected.nombres}" title="#{bundle.ViewUsuariosTitle_nombres}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_apellidos}"/>
+                    <h:outputText value="#{usuariosController.selected.apellidos}" title="#{bundle.ViewUsuariosTitle_apellidos}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_direccion}"/>
+                    <h:outputText value="#{usuariosController.selected.direccion}" title="#{bundle.ViewUsuariosTitle_direccion}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_fechaNacimiento}"/>
+                    <h:outputText value="#{usuariosController.selected.fechaNacimiento}" title="#{bundle.ViewUsuariosTitle_fechaNacimiento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_lugarNacimiento}"/>
+                    <h:outputText value="#{usuariosController.selected.lugarNacimiento}" title="#{bundle.ViewUsuariosTitle_lugarNacimiento}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_genero}"/>
+                    <h:outputText value="#{usuariosController.selected.genero}" title="#{bundle.ViewUsuariosTitle_genero}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_telefonoFijio}"/>
+                    <h:outputText value="#{usuariosController.selected.telefonoFijio}" title="#{bundle.ViewUsuariosTitle_telefonoFijio}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_telefonoMovil}"/>
+                    <h:outputText value="#{usuariosController.selected.telefonoMovil}" title="#{bundle.ViewUsuariosTitle_telefonoMovil}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_estadoCivil}"/>
+                    <h:outputText value="#{usuariosController.selected.estadoCivil}" title="#{bundle.ViewUsuariosTitle_estadoCivil}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_clave}"/>
+                    <h:outputText value="#{usuariosController.selected.clave}" title="#{bundle.ViewUsuariosTitle_clave}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_estadoUsuariosidestadoUsuarios}"/>
+                    <h:outputText value="#{usuariosController.selected.estadoUsuariosidestadoUsuarios}" title="#{bundle.ViewUsuariosTitle_estadoUsuariosidestadoUsuarios}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_personalodontologico}"/>
+                    <h:outputText value="#{usuariosController.selected.personalodontologico}" title="#{bundle.ViewUsuariosTitle_personalodontologico}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_pacientes}"/>
+                    <h:outputText value="#{usuariosController.selected.pacientes}" title="#{bundle.ViewUsuariosTitle_pacientes}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{usuariosController.destroyAndView}" value="#{bundle.ViewUsuariosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewUsuariosEditLink}"/>
+                <br />
+                <h:commandLink action="#{usuariosController.prepareCreate}" value="#{bundle.ViewUsuariosCreateLink}" />
+                <br />
+                <h:commandLink action="#{usuariosController.prepareList}" value="#{bundle.ViewUsuariosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewUsuariosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAntecedentesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAntecedentesEmpty}" rendered="#{antecedentesController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{antecedentesController.items.rowCount > 0}">
+                    <h:outputText value="#{antecedentesController.pagination.pageFirstItem + 1}..#{antecedentesController.pagination.pageLastItem + 1}/#{antecedentesController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{antecedentesController.previous}" value="#{bundle.Previous} #{antecedentesController.pagination.pageSize}" rendered="#{antecedentesController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{antecedentesController.next}" value="#{bundle.Next} #{antecedentesController.pagination.pageSize}" rendered="#{antecedentesController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{antecedentesController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAntecedentesTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAntecedentesTitle_origen}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.origen}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAntecedentesTitle_historiasClinicasidUsuarios}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.historiasClinicasidUsuarios}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAntecedentesTitle_tipoAntecedentesidtipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoAntecedentesidtipo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{antecedentesController.prepareView}" value="#{bundle.ListAntecedentesViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{antecedentesController.prepareEdit}" value="#{bundle.ListAntecedentesEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{antecedentesController.destroy}" value="#{bundle.ListAntecedentesDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{antecedentesController.prepareCreate}" value="#{bundle.ListAntecedentesCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAntecedentesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

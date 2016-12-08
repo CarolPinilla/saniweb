@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewOdontogramasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewOdontogramasLabel_idOdontograma}"/>
+                    <h:outputText value="#{odontogramasController.selected.idOdontograma}" title="#{bundle.ViewOdontogramasTitle_idOdontograma}"/>
+                    <h:outputText value="#{bundle.ViewOdontogramasLabel_fechaCreacion}"/>
+                    <h:outputText value="#{odontogramasController.selected.fechaCreacion}" title="#{bundle.ViewOdontogramasTitle_fechaCreacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewOdontogramasLabel_fechaCierre}"/>
+                    <h:outputText value="#{odontogramasController.selected.fechaCierre}" title="#{bundle.ViewOdontogramasTitle_fechaCierre}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewOdontogramasLabel_observaciones}"/>
+                    <h:outputText value="#{odontogramasController.selected.observaciones}" title="#{bundle.ViewOdontogramasTitle_observaciones}"/>
+                    <h:outputText value="#{bundle.ViewOdontogramasLabel_idUsuarios}"/>
+                    <h:outputText value="#{odontogramasController.selected.idUsuarios}" title="#{bundle.ViewOdontogramasTitle_idUsuarios}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{odontogramasController.destroyAndView}" value="#{bundle.ViewOdontogramasDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewOdontogramasEditLink}"/>
+                <br />
+                <h:commandLink action="#{odontogramasController.prepareCreate}" value="#{bundle.ViewOdontogramasCreateLink}" />
+                <br />
+                <h:commandLink action="#{odontogramasController.prepareList}" value="#{bundle.ViewOdontogramasShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewOdontogramasIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

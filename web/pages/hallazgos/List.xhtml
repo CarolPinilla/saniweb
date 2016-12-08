@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListHallazgosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListHallazgosEmpty}" rendered="#{hallazgosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{hallazgosController.items.rowCount > 0}">
+                    <h:outputText value="#{hallazgosController.pagination.pageFirstItem + 1}..#{hallazgosController.pagination.pageLastItem + 1}/#{hallazgosController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{hallazgosController.previous}" value="#{bundle.Previous} #{hallazgosController.pagination.pageSize}" rendered="#{hallazgosController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{hallazgosController.next}" value="#{bundle.Next} #{hallazgosController.pagination.pageSize}" rendered="#{hallazgosController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{hallazgosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHallazgosTitle_idHallazgo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idHallazgo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHallazgosTitle_fechaRegistro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaRegistro}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHallazgosTitle_mesial}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mesial}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHallazgosTitle_oclusal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.oclusal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHallazgosTitle_lingual}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lingual}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHallazgosTitle_distal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.distal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHallazgosTitle_incisal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.incisal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHallazgosTitle_vestibular}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vestibular}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHallazgosTitle_apical}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.apical}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHallazgosTitle_hallazgoscol}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hallazgoscol}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHallazgosTitle_odontogramasidOdontograma}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.odontogramasidOdontograma}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHallazgosTitle_piezaDentalidDiente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.piezaDentalidDiente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHallazgosTitle_tratamientoidTratamiento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tratamientoidTratamiento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{hallazgosController.prepareView}" value="#{bundle.ListHallazgosViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{hallazgosController.prepareEdit}" value="#{bundle.ListHallazgosEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{hallazgosController.destroy}" value="#{bundle.ListHallazgosDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{hallazgosController.prepareCreate}" value="#{bundle.ListHallazgosCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListHallazgosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

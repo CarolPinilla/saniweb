@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPiezadentalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPiezadentalLabel_idDiente}" for="idDiente" />
+                    <h:inputText id="idDiente" value="#{piezadentalController.selected.idDiente}" title="#{bundle.EditPiezadentalTitle_idDiente}" required="true" requiredMessage="#{bundle.EditPiezadentalRequiredMessage_idDiente}"/>
+                    <h:outputLabel value="#{bundle.EditPiezadentalLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{piezadentalController.selected.nombre}" title="#{bundle.EditPiezadentalTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.EditPiezadentalLabel_descripcion}" for="descripcion" />
+                    <h:inputTextarea rows="4" cols="30" id="descripcion" value="#{piezadentalController.selected.descripcion}" title="#{bundle.EditPiezadentalTitle_descripcion}" />
+                </h:panelGrid>
+                <h:commandLink action="#{piezadentalController.update}" value="#{bundle.EditPiezadentalSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPiezadentalViewLink}"/>
+                <br />
+                <h:commandLink action="#{piezadentalController.prepareList}" value="#{bundle.EditPiezadentalShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPiezadentalIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

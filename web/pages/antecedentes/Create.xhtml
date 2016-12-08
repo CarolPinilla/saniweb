@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAntecedentesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAntecedentesLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{antecedentesController.selected.id}" title="#{bundle.CreateAntecedentesTitle_id}" required="true" requiredMessage="#{bundle.CreateAntecedentesRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateAntecedentesLabel_origen}" for="origen" />
+                    <h:inputText id="origen" value="#{antecedentesController.selected.origen}" title="#{bundle.CreateAntecedentesTitle_origen}" />
+                    <h:outputLabel value="#{bundle.CreateAntecedentesLabel_historiasClinicasidUsuarios}" for="historiasClinicasidUsuarios" />
+                    <h:selectOneMenu id="historiasClinicasidUsuarios" value="#{antecedentesController.selected.historiasClinicasidUsuarios}" title="#{bundle.CreateAntecedentesTitle_historiasClinicasidUsuarios}" required="true" requiredMessage="#{bundle.CreateAntecedentesRequiredMessage_historiasClinicasidUsuarios}">
+                        <f:selectItems value="#{historiasclinicasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAntecedentesLabel_tipoAntecedentesidtipo}" for="tipoAntecedentesidtipo" />
+                    <h:selectOneMenu id="tipoAntecedentesidtipo" value="#{antecedentesController.selected.tipoAntecedentesidtipo}" title="#{bundle.CreateAntecedentesTitle_tipoAntecedentesidtipo}" required="true" requiredMessage="#{bundle.CreateAntecedentesRequiredMessage_tipoAntecedentesidtipo}">
+                        <f:selectItems value="#{tipoantecedentesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{antecedentesController.create}" value="#{bundle.CreateAntecedentesSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{antecedentesController.prepareList}" value="#{bundle.CreateAntecedentesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAntecedentesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

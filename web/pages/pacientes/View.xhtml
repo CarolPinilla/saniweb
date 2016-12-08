@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPacientesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPacientesLabel_idUsuarios}"/>
+                    <h:outputText value="#{pacientesController.selected.idUsuarios}" title="#{bundle.ViewPacientesTitle_idUsuarios}"/>
+                    <h:outputText value="#{bundle.ViewPacientesLabel_ocupacion}"/>
+                    <h:outputText value="#{pacientesController.selected.ocupacion}" title="#{bundle.ViewPacientesTitle_ocupacion}"/>
+                    <h:outputText value="#{bundle.ViewPacientesLabel_tipoAfiliacion}"/>
+                    <h:outputText value="#{pacientesController.selected.tipoAfiliacion}" title="#{bundle.ViewPacientesTitle_tipoAfiliacion}"/>
+                    <h:outputText value="#{bundle.ViewPacientesLabel_eps}"/>
+                    <h:outputText value="#{pacientesController.selected.eps}" title="#{bundle.ViewPacientesTitle_eps}"/>
+                    <h:outputText value="#{bundle.ViewPacientesLabel_rh}"/>
+                    <h:outputText value="#{pacientesController.selected.rh}" title="#{bundle.ViewPacientesTitle_rh}"/>
+                    <h:outputText value="#{bundle.ViewPacientesLabel_historiasclinicas}"/>
+                    <h:outputText value="#{pacientesController.selected.historiasclinicas}" title="#{bundle.ViewPacientesTitle_historiasclinicas}"/>
+                    <h:outputText value="#{bundle.ViewPacientesLabel_usuarios}"/>
+                    <h:outputText value="#{pacientesController.selected.usuarios}" title="#{bundle.ViewPacientesTitle_usuarios}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pacientesController.destroyAndView}" value="#{bundle.ViewPacientesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPacientesEditLink}"/>
+                <br />
+                <h:commandLink action="#{pacientesController.prepareCreate}" value="#{bundle.ViewPacientesCreateLink}" />
+                <br />
+                <h:commandLink action="#{pacientesController.prepareList}" value="#{bundle.ViewPacientesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPacientesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

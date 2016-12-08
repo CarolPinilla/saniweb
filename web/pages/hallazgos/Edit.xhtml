@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditHallazgosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditHallazgosLabel_idHallazgo}" for="idHallazgo" />
+                    <h:inputText id="idHallazgo" value="#{hallazgosController.selected.idHallazgo}" title="#{bundle.EditHallazgosTitle_idHallazgo}" required="true" requiredMessage="#{bundle.EditHallazgosRequiredMessage_idHallazgo}"/>
+                    <h:outputLabel value="#{bundle.EditHallazgosLabel_fechaRegistro}" for="fechaRegistro" />
+                    <h:inputText id="fechaRegistro" value="#{hallazgosController.selected.fechaRegistro}" title="#{bundle.EditHallazgosTitle_fechaRegistro}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditHallazgosLabel_mesial}" for="mesial" />
+                    <h:inputText id="mesial" value="#{hallazgosController.selected.mesial}" title="#{bundle.EditHallazgosTitle_mesial}" />
+                    <h:outputLabel value="#{bundle.EditHallazgosLabel_oclusal}" for="oclusal" />
+                    <h:inputText id="oclusal" value="#{hallazgosController.selected.oclusal}" title="#{bundle.EditHallazgosTitle_oclusal}" />
+                    <h:outputLabel value="#{bundle.EditHallazgosLabel_lingual}" for="lingual" />
+                    <h:inputText id="lingual" value="#{hallazgosController.selected.lingual}" title="#{bundle.EditHallazgosTitle_lingual}" />
+                    <h:outputLabel value="#{bundle.EditHallazgosLabel_distal}" for="distal" />
+                    <h:inputText id="distal" value="#{hallazgosController.selected.distal}" title="#{bundle.EditHallazgosTitle_distal}" />
+                    <h:outputLabel value="#{bundle.EditHallazgosLabel_incisal}" for="incisal" />
+                    <h:inputText id="incisal" value="#{hallazgosController.selected.incisal}" title="#{bundle.EditHallazgosTitle_incisal}" />
+                    <h:outputLabel value="#{bundle.EditHallazgosLabel_vestibular}" for="vestibular" />
+                    <h:inputText id="vestibular" value="#{hallazgosController.selected.vestibular}" title="#{bundle.EditHallazgosTitle_vestibular}" />
+                    <h:outputLabel value="#{bundle.EditHallazgosLabel_apical}" for="apical" />
+                    <h:inputText id="apical" value="#{hallazgosController.selected.apical}" title="#{bundle.EditHallazgosTitle_apical}" />
+                    <h:outputLabel value="#{bundle.EditHallazgosLabel_hallazgoscol}" for="hallazgoscol" />
+                    <h:inputText id="hallazgoscol" value="#{hallazgosController.selected.hallazgoscol}" title="#{bundle.EditHallazgosTitle_hallazgoscol}" />
+                    <h:outputLabel value="#{bundle.EditHallazgosLabel_odontogramasidOdontograma}" for="odontogramasidOdontograma" />
+                    <h:selectOneMenu id="odontogramasidOdontograma" value="#{hallazgosController.selected.odontogramasidOdontograma}" title="#{bundle.EditHallazgosTitle_odontogramasidOdontograma}" required="true" requiredMessage="#{bundle.EditHallazgosRequiredMessage_odontogramasidOdontograma}">
+                        <f:selectItems value="#{odontogramasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditHallazgosLabel_piezaDentalidDiente}" for="piezaDentalidDiente" />
+                    <h:selectOneMenu id="piezaDentalidDiente" value="#{hallazgosController.selected.piezaDentalidDiente}" title="#{bundle.EditHallazgosTitle_piezaDentalidDiente}" required="true" requiredMessage="#{bundle.EditHallazgosRequiredMessage_piezaDentalidDiente}">
+                        <f:selectItems value="#{piezadentalController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditHallazgosLabel_tratamientoidTratamiento}" for="tratamientoidTratamiento" />
+                    <h:selectOneMenu id="tratamientoidTratamiento" value="#{hallazgosController.selected.tratamientoidTratamiento}" title="#{bundle.EditHallazgosTitle_tratamientoidTratamiento}" required="true" requiredMessage="#{bundle.EditHallazgosRequiredMessage_tratamientoidTratamiento}">
+                        <f:selectItems value="#{tratamientoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{hallazgosController.update}" value="#{bundle.EditHallazgosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditHallazgosViewLink}"/>
+                <br />
+                <h:commandLink action="#{hallazgosController.prepareList}" value="#{bundle.EditHallazgosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditHallazgosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
